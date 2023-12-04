@@ -11,9 +11,6 @@ const findNumber = (row: number, col: number): number => {
     while (colPtr+1 < input[row].length && !Number.isNaN(+input[row][colPtr+1])) colPtr++;
 
     while (colPtr >= 0 && !Number.isNaN(+input[row][colPtr])) {
-
-        //console.log(`number ${colPtr}. : ${input[row][colPtr]}`);
-
         num += +input[row][colPtr] * dec;
         dec *= 10;
         input[row][colPtr] = '.';
@@ -68,7 +65,6 @@ const sumPartNumbers = (): number => {
     for (let row = 0; row < input.length; row++) {
         for (let col = 0; col < input[row].length; col++) {
             if (input[row][col] === '*') {
-                console.log('found at: (' + row + ';' + col + ')')
                 sum += sumGearRatios(row, col);
             }
                
