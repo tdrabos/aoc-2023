@@ -9,25 +9,17 @@ const SYMBOLS_REGEX = /[^A-Za-z 0-9 .]/g;
 let input: string[][] = [];
 
 const findNumber = (row: number, col: number): number => {
-
-    console.log(`found number at (${row};${col})`)
-
     let num = 0;
     let dec = 1, colPtr = col;
 
     while (colPtr+1 < input[row].length && !Number.isNaN(+input[row][colPtr+1])) colPtr++;
 
     while (colPtr >= 0 && !Number.isNaN(+input[row][colPtr])) {
-
-        //console.log(`number ${colPtr}. : ${input[row][colPtr]}`);
-
         num += +input[row][colPtr] * dec;
         dec *= 10;
         input[row][colPtr] = '.';
         colPtr--;
     }
-
-    console.log('found number: ' +num)
 
     return num;
 };
@@ -68,8 +60,6 @@ const sumNumbersForSymbol = (row: number, col: number): number => {
     if (col < input[row].length-1 && !Number.isNaN(+input[row][col+1]))
         sum += findNumber(row, col+1);
 
-    //console.log(sum);
-
     return sum;
 };
 
@@ -79,7 +69,6 @@ const sumPartNumbers = (): number => {
     for (let row = 0; row < input.length; row++) {
         for (let col = 0; col < input[row].length; col++) {
             if (input[row][col].match(SYMBOLS_REGEX)) {
-                //console.log('found at: (' + row + ';' + col + ')')
                 sum += sumNumbersForSymbol(row, col);
             }
                
